@@ -18,7 +18,7 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-6">
-            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((link) => (
+            {['Home', 'About', 'Education', 'Projects', 'Skills', 'Contact'].map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}

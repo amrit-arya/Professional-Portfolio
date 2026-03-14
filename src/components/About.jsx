@@ -91,13 +91,6 @@ export default function About() {
                   </div>
                 </div>
               </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -right-4 px-5 py-3 rounded-2xl glass-card gradient-border animate-float">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-sm font-medium text-white/80">Available for work</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -130,7 +123,7 @@ export default function About() {
               {['React.js', 'Node.js', 'TypeScript', 'Python', 'MongoDB'].map((tech) => (
                 <span
                   key={tech}
-                  className="px-4 py-2 rounded-xl glass-card text-sm text-white/60 hover:text-white hover:border-sky/30 transition-all duration-300 cursor-default"
+                  className="px-4 py-2 rounded-xl glass-card text-sm text-white/60 hover:text-white hover:border-sky/30 cursor-default"
                 >
                   {tech}
                 </span>
@@ -144,12 +137,12 @@ export default function About() {
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="group glass-card rounded-2xl p-6 text-center transition-all duration-300 hover:scale-105 hover:border-lavender/25 gradient-border"
+              className="group glass-card rounded-2xl p-6 text-center hover:scale-105 hover:border-lavender/25 gradient-border"
             >
               <div className="text-3xl sm:text-4xl font-heading font-bold gradient-text mb-2">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-sm text-white/40 group-hover:text-white/60 transition-colors">{stat.label}</p>
+              <p className="text-sm text-white/40 group-hover:text-white/60">{stat.label}</p>
             </div>
           ))}
         </div>
