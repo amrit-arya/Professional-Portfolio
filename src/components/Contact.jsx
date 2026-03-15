@@ -7,7 +7,7 @@ export default function Contact() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.15 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -31,14 +31,14 @@ export default function Contact() {
       <div className="absolute top-0 left-1/3 w-96 h-96 rounded-full bg-pink/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl mx-auto">
-        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
           <span className="text-sm font-semibold tracking-widest uppercase text-light-blue/80">Reach out</span>
           <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">Get In Touch</h2>
           <div className="mt-4 mx-auto w-20 h-1 rounded-full bg-gradient-to-r from-light-blue to-pink" />
           <p className="mt-6 text-white/40 max-w-lg mx-auto">Have a project in mind? Let's create something amazing together.</p>
         </div>
 
-        <div className={`glass-card rounded-3xl p-8 sm:p-12 gradient-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+        <div className={`glass-card rounded-3xl p-8 sm:p-12 gradient-border ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`} style={{ animationDelay: '0.2s' }}>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
               <div>

@@ -66,7 +66,7 @@ export default function Skills() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.1 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -78,7 +78,7 @@ export default function Skills() {
       <div className="absolute top-1/3 right-0 w-80 h-80 rounded-full bg-rose/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
-        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
           <span className="text-sm font-semibold tracking-widest uppercase text-rose/80">What I do</span>
           <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">Skills & Expertise</h2>
           <div className="mt-4 mx-auto w-20 h-1 rounded-full bg-gradient-to-r from-rose to-lavender" />
@@ -89,7 +89,7 @@ export default function Skills() {
           {skillCategories.map((category, i) => (
             <div
               key={i}
-              className={`group glass-card rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-lavender/5 gradient-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              className={`group glass-card rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-lavender/5 gradient-border ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}
               style={{ animationDelay: `${0.15 * i}s` }}
             >
               <div className="flex items-center gap-4 mb-8">

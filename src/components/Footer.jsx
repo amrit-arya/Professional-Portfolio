@@ -1,6 +1,20 @@
+import { useEffect, useRef, useState } from 'react'
+
 export default function Footer() {
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <footer className="relative py-12 px-6 border-t border-white/5">
+    <footer ref={ref} className={`relative py-12 px-6 border-t border-white/5 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
       {/* Gradient top line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-lavender/30 to-transparent" />
 

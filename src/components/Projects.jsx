@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured online store with real-time inventory management, secure payment processing, and an intuitive admin dashboard.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+    title: 'Cyber Sentinel',
+    description: 'A full-stack CCTV Security Scanning Platform with encrypted RTSP scanning, real-time threat monitoring, camera management, and a modern React-based dashboard.',
+    tags: ['React Js', 'Python', 'Tailwind CSS'],
     color: 'from-lavender to-pink',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -13,9 +13,9 @@ const projects = [
     ),
   },
   {
-    title: 'AI Chat Application',
-    description: 'Real-time chat application powered by AI with natural language processing, smart replies, and multi-language support.',
-    tags: ['Next.js', 'OpenAI', 'WebSocket', 'TailwindCSS'],
+    title: 'Virasat',
+    description: 'This is a comprehensive digital legacy management platform that helps users securely store and manage important documents, assets, and information for their beneficiaries.',
+    tags: ['React Js', 'Node Js', 'MongoDB', 'JWT'],
     color: 'from-pink to-rose',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -24,9 +24,9 @@ const projects = [
     ),
   },
   {
-    title: 'Portfolio Dashboard',
-    description: 'Interactive analytics dashboard with beautiful data visualizations, real-time metrics, and customizable widget layouts.',
-    tags: ['React', 'D3.js', 'Firebase', 'Chart.js'],
+    title: 'VOX',
+    description: 'Vox is an end-to-end system that translates sign language gestures into text and speech in real-time.',
+    tags: ['Python', 'Open CV', 'Mediapipe', 'Tensorflow'],
     color: 'from-rose to-light-blue',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -35,38 +35,16 @@ const projects = [
     ),
   },
   {
-    title: 'Social Media App',
-    description: 'Feature-rich social platform with stories, real-time notifications, content moderation, and an engaging recommendation feed.',
-    tags: ['React Native', 'GraphQL', 'PostgreSQL', 'AWS'],
+    title: 'Railway Management System',
+    description: 'It is a Railway Management System created using Python and MySQL. This project is created by joining both Python and MySQL.',
+    tags: ['Python', 'MySQL'],
     color: 'from-light-blue to-sky',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     ),
-  },
-  {
-    title: 'Task Management Tool',
-    description: 'Collaborative project management tool with kanban boards, time tracking, team chat, and automated workflow pipelines.',
-    tags: ['Vue.js', 'Express', 'Redis', 'Docker'],
-    color: 'from-sky to-lavender',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Weather Forecast App',
-    description: 'Beautiful weather application with location-based forecasts, interactive maps, severe weather alerts, and historical data analysis.',
-    tags: ['React', 'TypeScript', 'WeatherAPI', 'Mapbox'],
-    color: 'from-lavender to-sky',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-      </svg>
-    ),
-  },
+  }
 ]
 
 export default function Projects() {
@@ -75,9 +53,7 @@ export default function Projects() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.1 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -92,7 +68,7 @@ export default function Projects() {
 
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
           <span className="text-sm font-semibold tracking-widest uppercase text-pink/80">My portfolio</span>
           <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">
             Featured Projects
@@ -108,9 +84,8 @@ export default function Projects() {
           {projects.map((project, i) => (
             <div
               key={i}
-              className={`group relative rounded-2xl glass-card overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 hover:shadow-2xl hover:shadow-lavender/5 ${
-                isVisible ? 'animate-fade-in-up' : 'opacity-0'
-              }`}
+              className={`group relative rounded-2xl glass-card overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 hover:shadow-2xl hover:shadow-lavender/5 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'
+                }`}
               style={{ animationDelay: `${0.1 * i}s` }}
             >
               {/* Top gradient bar */}
@@ -170,7 +145,7 @@ export default function Projects() {
               </div>
 
               {/* Hover glow effect */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} scroll-hidden group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none`} />
             </div>
           ))}
         </div>

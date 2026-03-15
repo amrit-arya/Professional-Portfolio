@@ -4,28 +4,28 @@ const educationData = [
   {
     degree: 'Bachelor of Technology',
     field: 'Computer Science & Engineering',
-    institution: 'University Name',
-    year: '2021 - 2025',
+    institution: 'ITER | SOA',
+    year: '2024 - Present',
     description: 'Focused on data structures, algorithms, software engineering, and web development. Participated in hackathons and coding competitions.',
-    gpa: '8.5 / 10',
+    gpa: '8.55 / 10',
     color: 'from-lavender to-pink',
   },
   {
     degree: 'Higher Secondary (XII)',
     field: 'Science - PCM',
-    institution: 'School Name',
-    year: '2019 - 2021',
+    institution: 'D.A.V Public School, Bistupur',
+    year: '2024',
     description: 'Completed higher secondary education with focus on Physics, Chemistry, and Mathematics.',
-    gpa: '92%',
+    gpa: '7.4 / 10',
     color: 'from-pink to-rose',
   },
   {
     degree: 'Secondary (X)',
     field: 'General Studies',
-    institution: 'School Name',
-    year: '2019',
+    institution: 'D.A.V Public School, Bistupur',
+    year: '2022',
     description: 'Completed secondary education with distinction in Mathematics and Science.',
-    gpa: '95%',
+    gpa: '9.3 / 10',
     color: 'from-light-blue to-sky',
   },
 ]
@@ -36,7 +36,7 @@ export default function Education() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.1 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -50,7 +50,7 @@ export default function Education() {
 
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
-        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
           <span className="text-sm font-semibold tracking-widest uppercase text-lavender/80">My Journey</span>
           <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">
             Education
@@ -66,10 +66,9 @@ export default function Education() {
           {educationData.map((item, i) => (
             <div
               key={i}
-              className={`relative flex flex-col md:flex-row items-start mb-16 last:mb-0 ${
-                i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-              style={{ animationDelay: `${0.2 * i}s` }}
+              className={`relative flex flex-col md:flex-row items-start mb-16 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } ${isVisible ? (i % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right') : (i % 2 === 0 ? 'scroll-hidden-left' : 'scroll-hidden-right')}`}
+              style={{ animationDelay: `${0.3 * i}s` }}
             >
               {/* Timeline dot */}
               <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-lavender to-sky border-4 border-dark z-10" />

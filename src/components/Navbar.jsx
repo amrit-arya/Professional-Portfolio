@@ -57,10 +57,10 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        className={`flex items-center justify-between rounded-full transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           isScrolled
-            ? 'glass rounded-full px-5 py-2 shadow-lg shadow-lavender/10'
-            : 'glass rounded-2xl px-6 py-3 shadow-xl shadow-sky/5'
+            ? 'glass px-5 py-2 shadow-lg shadow-lavender/10'
+            : 'glass px-6 py-3 shadow-xl shadow-sky/5'
         }`}
       >
         {/* Logo */}

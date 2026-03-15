@@ -48,9 +48,7 @@ export default function About() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.15 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -65,7 +63,7 @@ export default function About() {
 
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
           <span className="text-sm font-semibold tracking-widest uppercase text-sky/80">Get to know me</span>
           <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">
             About Me
@@ -73,54 +71,31 @@ export default function About() {
           <div className="mt-4 mx-auto w-20 h-1 rounded-full bg-gradient-to-r from-lavender to-sky" />
         </div>
 
-        {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image/Visual Side */}
-          <div className={`relative ${isVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <div className="relative">
-              {/* Decorative frame */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-lavender/20 via-pink/10 to-sky/20 blur-xl" />
-              <div className="relative rounded-3xl overflow-hidden glass-card p-8">
-                {/* Avatar placeholder with gradient */}
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-lavender/30 via-dark-surface to-sky/30 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-lavender via-pink to-sky flex items-center justify-center mb-6">
-                      <span className="text-5xl font-heading font-bold text-dark">AA</span>
-                    </div>
-                    <p className="text-white/40 text-sm">Your photo here</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Text Side */}
-          <div className={`${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
+        {/* Content */}
+        <div className={`max-w-3xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`} style={{ animationDelay: '0.2s' }}>
+          <div className="glass-card rounded-3xl p-8 sm:p-10 gradient-border">
             <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white/90 mb-6">
-              A passionate developer who loves building
-              <span className="text-pink"> impactful</span> software
+              A cloud enthusiast who loves building scalable software and watching
+              <span className="text-pink"> containers behave.</span>
             </h3>
             <div className="space-y-4 text-white/50 leading-relaxed">
               <p>
-                Hey there! I'm Amrit Arya, a Full Stack Developer passionate about creating 
-                elegant digital solutions. I specialize in building modern, responsive web 
-                applications that deliver exceptional user experiences.
+                I'm <strong className="text-white/70">Amrit Arya</strong>, a Computer Science undergraduate at ITER, Siksha 'O' Anusandhan University, with a strong interest in <strong className="text-white/70">DevOps, cloud computing, and building scalable software systems</strong>. I enjoy working at the intersection of development and operations, where automation, collaboration, and continuous improvement help turn ideas into reliable products.
               </p>
               <p>
-                With expertise spanning across the entire development stack, I bring ideas to life 
-                using cutting-edge technologies. From crafting pixel-perfect UI components to 
-                architecting robust backend systems, I thrive on transforming complex problems 
-                into intuitive, beautiful products.
+                My technical journey has involved building projects that combine <strong className="text-white/70">software development, machine learning, and security-focused systems</strong>. I developed <strong className="text-white/70">VOX</strong>, a real-time sign language–to–text translation system using computer vision to improve accessibility, and <strong className="text-white/70">Virasat</strong>, a secure digital legacy management platform designed to safely store and transfer sensitive data. I have also worked on <strong className="text-white/70">Cyber Sentinel</strong>, a cybersecurity monitoring dashboard that helps detect and visualize vulnerabilities in real time.
               </p>
               <p>
-                When I'm not coding, you'll find me exploring new technologies, contributing 
-                to open-source projects, or sharing knowledge with the developer community.
+                Alongside technical projects, I actively contribute to tech communities as a <strong className="text-white/70">Core Media Team Member at Google Developers Group</strong>.
+              </p>
+              <p>
+                I'm currently focused on deepening my skills in <strong className="text-white/70">cloud infrastructure, automation, and DevOps engineering</strong>, with the goal of contributing to high-impact systems and scalable platforms.
               </p>
             </div>
 
             {/* Quick info badges */}
             <div className="flex flex-wrap gap-3 mt-8">
-              {['React.js', 'Node.js', 'TypeScript', 'Python', 'MongoDB'].map((tech) => (
+              {['Python', 'Java', 'JavaScript', 'Docker', 'AWS', 'Git', 'MySQL', 'MongoDB'].map((tech) => (
                 <span
                   key={tech}
                   className="px-4 py-2 rounded-xl glass-card text-sm text-white/60 hover:text-white hover:border-sky/30 cursor-default"
@@ -133,7 +108,7 @@ export default function About() {
         </div>
 
         {/* Stats */}
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`} style={{ animationDelay: '0.6s' }}>
           {stats.map((stat, i) => (
             <div
               key={i}

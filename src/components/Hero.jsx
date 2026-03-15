@@ -18,7 +18,7 @@ export default function Hero() {
         <div className="animate-fade-in-up mb-6" style={{ animationDelay: '0.2s', opacity: 0 }}>
           <span className={`inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-sm font-medium tracking-wider uppercase ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
             <span className="w-2 h-2 rounded-full bg-sky animate-pulse" />
-            Full Stack Developer
+            CSE Undergrad
           </span>
         </div>
 
@@ -29,9 +29,9 @@ export default function Hero() {
 
         {/* Tagline */}
         <p className={`text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up ${isDark ? 'text-white/50' : 'text-gray-500'}`} style={{ animationDelay: '0.6s', opacity: 0 }}>
-          Crafting <span className={`font-medium ${isDark ? 'text-pink' : 'text-pink-600'}`}>beautiful</span> digital experiences with{' '}
-          <span className={`font-medium ${isDark ? 'text-sky' : 'text-blue-500'}`}>modern technologies</span>. Turning ideas into elegant,
-          performant web applications.
+          Aspiring <span className={`font-medium ${isDark ? 'text-pink' : 'text-pink-600'}`}>DevOps Engineer</span> passionate about automation and{' '}
+          <span className={`font-medium ${isDark ? 'text-sky' : 'text-blue-500'}`}>scalable systems</span>.
+          I build reliable pipelines and infrastructure that power modern applications.
         </p>
 
         {/* CTA Buttons */}
