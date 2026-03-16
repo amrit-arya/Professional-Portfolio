@@ -51,17 +51,16 @@ export default function Education() {
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
-          <span className="text-sm font-semibold tracking-widest uppercase text-lavender/80">My Journey</span>
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">
+          <span className="text-sm font-semibold tracking-widest uppercase text-white/40">My Journey</span>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3">
             Education
           </h2>
-          <div className="mt-4 mx-auto w-20 h-1 rounded-full bg-gradient-to-r from-lavender to-sky" />
         </div>
 
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-lavender/30 via-pink/30 to-sky/30" />
+          <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-white/15" />
 
           {educationData.map((item, i) => (
             <div
@@ -71,16 +70,16 @@ export default function Education() {
               style={{ animationDelay: `${0.3 * i}s` }}
             >
               {/* Timeline dot */}
-              <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-lavender to-sky border-4 border-dark z-10" />
+              <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white border-4 border-[#0a0a0a] z-10" />
 
               {/* Card */}
               <div className={`ml-14 md:ml-0 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
                 <div className="glass-card rounded-2xl p-6 hover:scale-[1.02] gradient-border group">
                   {/* Gradient top bar */}
-                  <div className={`h-1 -mt-6 -mx-6 mb-5 rounded-t-2xl bg-gradient-to-r ${item.color}`} />
+                  <div className="h-px -mt-6 -mx-6 mb-5 bg-white/10" />
 
                   {/* Year badge */}
-                  <span className={`inline-block px-3 py-1 rounded-lg text-xs font-semibold mb-3 bg-gradient-to-r ${item.color} text-dark`}>
+                  <span className="inline-block px-3 py-1 rounded-lg text-xs font-semibold mb-3 bg-white/10 text-white/70">
                     {item.year}
                   </span>
 

@@ -69,11 +69,10 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
-          <span className="text-sm font-semibold tracking-widest uppercase text-pink/80">My portfolio</span>
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">
+          <span className="text-sm font-semibold tracking-widest uppercase text-white/40">My portfolio</span>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3">
             Featured Projects
           </h2>
-          <div className="mt-4 mx-auto w-20 h-1 rounded-full bg-gradient-to-r from-pink to-sky" />
           <p className="mt-6 text-white/40 max-w-xl mx-auto">
             Here are some projects I've worked on. Each one was an opportunity to learn and grow.
           </p>
@@ -89,7 +88,7 @@ export default function Projects() {
               style={{ animationDelay: `${0.1 * i}s` }}
             >
               {/* Top gradient bar */}
-              <div className={`h-1 bg-gradient-to-r ${project.color} transition-all duration-300 group-hover:h-1.5`} />
+              <div className="h-px bg-white/15" />
 
               <div className="p-6">
                 {/* Icon + Title */}

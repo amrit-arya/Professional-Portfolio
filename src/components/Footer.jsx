@@ -16,15 +16,13 @@ export default function Footer() {
   return (
     <footer ref={ref} className={`relative py-12 px-6 border-t border-white/5 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
       {/* Gradient top line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-lavender/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-white/8" />
 
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-lavender via-pink to-sky flex items-center justify-center text-dark font-bold font-heading text-xs">
-              A
-            </div>
+            
             <span className="text-base font-heading font-semibold text-white/70">
               Amrit Arya
             </span>

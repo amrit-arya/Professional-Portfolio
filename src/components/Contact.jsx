@@ -32,9 +32,8 @@ export default function Contact() {
 
       <div className="max-w-4xl mx-auto">
         <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
-          <span className="text-sm font-semibold tracking-widest uppercase text-light-blue/80">Reach out</span>
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3 gradient-text">Get In Touch</h2>
-          <div className="mt-4 mx-auto w-20 h-1 rounded-full bg-gradient-to-r from-light-blue to-pink" />
+          <span className="text-sm font-semibold tracking-widest uppercase text-white/40">Reach out</span>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3">Get In Touch</h2>
           <p className="mt-6 text-white/40 max-w-lg mx-auto">Have a project in mind? Let's create something amazing together.</p>
         </div>
 
@@ -80,7 +79,7 @@ export default function Contact() {
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-lavender via-pink to-sky text-dark font-semibold text-base transition-all duration-300 hover:shadow-2xl hover:shadow-sky/20 hover:scale-105 btn-glow cursor-pointer"
+              className="w-full sm:w-auto px-10 py-4 rounded-xl bg-white text-black font-semibold text-base transition-all duration-300 hover:shadow-2xl hover:shadow-sky/20 hover:scale-105 btn-glow cursor-pointer"
             >
               Send Message
             </button>

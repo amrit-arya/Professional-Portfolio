@@ -68,10 +68,7 @@ export default function Navbar() {
           onClick={() => scrollTo('home')}
           className="flex items-center gap-2 group cursor-pointer"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-lavender via-pink to-sky flex items-center justify-center text-dark font-bold font-heading text-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-            A
-          </div>
-          <span className={`text-lg font-heading font-bold transition-colors hidden sm:block ${isDark ? 'text-white/90 group-hover:text-white' : 'text-gray-800 group-hover:text-gray-950'}`}>
+          <span className={`text-lg font-heading font-bold transition-colors ${isDark ? 'text-white/90 group-hover:text-white' : 'text-gray-800 group-hover:text-gray-950'}`}>
             Arya<span className="text-sky">.</span>
           </span>
         </button>
