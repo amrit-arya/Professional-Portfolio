@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 
 const LANGUAGES = [
   { name: 'AMRIT ARYA'        },
+  { name: 'अमृत आर्य'          },
   { name: 'アムリット・アーリャ'    },
   { name: 'અમૃત આર્ય'          },
   { name: '阿姆里特·阿里亚'      },
   { name: '아므리트 아랴'        },
-  { name: 'अमृत आर्य'          },
   { name: 'అమృత్ ఆర్య'         },
   { name: 'أمريت آريا'         },
 ]
@@ -50,70 +50,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
-
-      {/* ── Grid tunnel background ── */}
-      <div className="absolute inset-0 pointer-events-none">
-        <svg
-          viewBox="0 0 1440 900"
-          preserveAspectRatio="xMidYMid slice"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
-        >
-          {/* Vertical lines converging to vanishing point (720, 450) */}
-          {Array.from({ length: 28 }, (_, i) => {
-            const x = i * (1440 / 27)
-            return (
-              <line
-                key={`v${i}`}
-                x1={x} y1={0}
-                x2={720} y2={450}
-                stroke="rgba(255,255,255,0.13)"
-                strokeWidth="0.7"
-              />
-            )
-          })}
-          {/* Horizontal lines converging (top half) */}
-          {Array.from({ length: 14 }, (_, i) => {
-            const t = i / 13
-            const y = t * 450
-            const spread = (1 - t) * 720
-            return (
-              <line
-                key={`ht${i}`}
-                x1={720 - spread} y1={y}
-                x2={720 + spread} y2={y}
-                stroke="rgba(255,255,255,0.11)"
-                strokeWidth="0.7"
-              />
-            )
-          })}
-          {/* Horizontal lines (bottom half) */}
-          {Array.from({ length: 14 }, (_, i) => {
-            const t = i / 13
-            const y = 450 + t * 450
-            const spread = t * 720
-            return (
-              <line
-                key={`hb${i}`}
-                x1={720 - spread} y1={y}
-                x2={720 + spread} y2={y}
-                stroke="rgba(255,255,255,0.11)"
-                strokeWidth="0.7"
-              />
-            )
-          })}
-          {/* Radial fade overlay — darken edges */}
-          <defs>
-            <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
-              <stop offset="0%"   stopColor="#0a0a0a" stopOpacity="0" />
-              <stop offset="100%" stopColor="#0a0a0a" stopOpacity="0.85" />
-            </radialGradient>
-          </defs>
-          <rect width="1440" height="900" fill="url(#vignette)" />
-        </svg>
-      </div>
-
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* ── Content ── */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
 

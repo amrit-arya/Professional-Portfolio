@@ -1,62 +1,146 @@
 import { useEffect, useRef, useState } from 'react'
 
-const skillCategories = [
-  {
-    title: 'Frontend',
-    color: 'from-lavender to-pink',
-    skills: [
-      { name: 'React / Next.js', level: 92 },
-      { name: 'TypeScript', level: 88 },
-      { name: 'Tailwind CSS', level: 95 },
-      { name: 'HTML / CSS', level: 97 },
-    ],
-  },
-  {
-    title: 'Backend',
-    color: 'from-pink to-rose',
-    skills: [
-      { name: 'Node.js / Express', level: 90 },
-      { name: 'Python / Django', level: 82 },
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'MongoDB', level: 88 },
-    ],
-  },
-  {
-    title: 'Tools & DevOps',
-    color: 'from-rose to-light-blue',
-    skills: [
-      { name: 'Git / GitHub', level: 93 },
-      { name: 'Docker', level: 80 },
-      { name: 'AWS / Cloud', level: 75 },
-      { name: 'CI/CD Pipelines', level: 78 },
-    ],
-  },
-  {
-    title: 'Design & Other',
-    color: 'from-light-blue to-sky',
-    skills: [
-      { name: 'Figma', level: 82 },
-      { name: 'UI/UX Design', level: 78 },
-      { name: 'Responsive Design', level: 95 },
-      { name: 'Problem Solving', level: 92 },
-    ],
-  },
+const radarData = [
+  { subject: 'DevOps',    score: 88 },
+  { subject: 'Backend',   score: 82 },
+  { subject: 'Frontend',  score: 75 },
+  { subject: 'Cloud',     score: 78 },
+  { subject: 'ML / CV',   score: 70 },
+  { subject: 'Security',  score: 72 },
+  { subject: 'Databases', score: 85 },
 ]
 
-function SkillBar({ name, level, isVisible, color }) {
+const techStacks = [
+  { category: 'Languages',  items: ['Python', 'Java', 'JavaScript', 'C++'] },
+  { category: 'DevOps',     items: ['Docker', 'CI/CD', 'Linux', 'Nginx'] },
+  { category: 'Cloud',      items: ['AWS', 'GCP Basics', 'Firebase', 'Vercel'] },
+  { category: 'Frameworks', items: ['React', 'Node.js', 'Express', 'Tailwind'] },
+  { category: 'Databases',  items: ['MongoDB', 'MySQL', 'PostgreSQL', 'Redis'] },
+  { category: 'Tools',      items: ['Git', 'GitHub', 'Figma', 'VS Code'] },
+]
+
+function RadarChart({ data, size = 320 }) {
+  const [hovered, setHovered] = useState(null)
+  const cx = size / 2
+  const cy = size / 2
+  const levels = 5
+  const maxR = size * 0.36
+  const n = data.length
+
+  const angleFor = (i) => (Math.PI * 2 * i) / n - Math.PI / 2
+
+  const pointAt = (score, i) => {
+    const r = (score / 100) * maxR
+    const a = angleFor(i)
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }
+  }
+
+  const labelAt = (i) => {
+    const r = maxR + 26
+    const a = angleFor(i)
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }
+  }
+
+  // Build polygon path for data
+  const dataPoints = data.map((d, i) => pointAt(d.score, i))
+  const polyPath = dataPoints.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ') + ' Z'
+
+  // Grid rings
+  const rings = Array.from({ length: levels }, (_, i) => {
+    const r = ((i + 1) / levels) * maxR
+    const pts = Array.from({ length: n }, (_, j) => {
+      const a = angleFor(j)
+      return `${j === 0 ? 'M' : 'L'}${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`
+    }).join(' ') + ' Z'
+    return pts
+  })
+
+  // Axis lines
+  const axes = data.map((_, i) => {
+    const end = pointAt(100, i)
+    return { x1: cx, y1: cy, x2: end.x, y2: end.y }
+  })
+
   return (
-    <div className="space-y-2">
-      <div className="flex justify-between items-center">
-        <span className="text-sm text-white/60">{name}</span>
-        <span className="text-xs text-white/40 font-medium">{level}%</span>
-      </div>
-      <div className="h-2 rounded-full bg-white/5 overflow-hidden">
-        <div
-          className="h-full rounded-full bg-white/60 skill-bar-fill"
-          style={{ width: isVisible ? `${level}%` : '0%' }}
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      style={{ overflow: 'visible', display: 'block', margin: '0 auto' }}
+    >
+      {/* Grid rings */}
+      {rings.map((d, i) => (
+        <path key={i} d={d} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+      ))}
+
+      {/* Axis lines */}
+      {axes.map((a, i) => (
+        <line key={i} x1={a.x1} y1={a.y1} x2={a.x2} y2={a.y2}
+          stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+      ))}
+
+      {/* Data polygon fill */}
+      <path d={polyPath} fill="rgba(255,255,255,0.08)" stroke="none" />
+
+      {/* Data polygon stroke */}
+      <path d={polyPath} fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.8"
+        strokeLinejoin="round" />
+
+      {/* Dots */}
+      {dataPoints.map((p, i) => (
+        <circle
+          key={i}
+          cx={p.x} cy={p.y} r={hovered === i ? 6 : 4}
+          fill={hovered === i ? '#ffffff' : 'rgba(255,255,255,0.6)'}
+          stroke="rgba(255,255,255,0.3)"
+          strokeWidth="1.5"
+          style={{ cursor: 'pointer', transition: 'r 0.15s, fill 0.15s' }}
+          onMouseEnter={() => setHovered(i)}
+          onMouseLeave={() => setHovered(null)}
         />
-      </div>
-    </div>
+      ))}
+
+      {/* Tooltip bubble on hover */}
+      {hovered !== null && (() => {
+        const p = dataPoints[hovered]
+        const d = data[hovered]
+        const bw = 80, bh = 38, br = 8
+        let bx = p.x - bw / 2
+        let by = p.y - bh - 12
+        if (by < 4) by = p.y + 14
+        bx = Math.max(4, Math.min(size - bw - 4, bx))
+        return (
+          <g>
+            <rect x={bx} y={by} width={bw} height={bh} rx={br}
+              fill="rgba(8,8,18,0.95)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+            <text x={bx + bw / 2} y={by + 14} textAnchor="middle"
+              fill="rgba(255,255,255,0.45)" fontSize="9"
+              style={{ fontFamily: 'Herkey, sans-serif', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+              {d.subject}
+            </text>
+            <text x={bx + bw / 2} y={by + 30} textAnchor="middle"
+              fill="#ffffff" fontSize="14" fontWeight="bold"
+              style={{ fontFamily: 'Monograph, sans-serif' }}>
+              {d.score}%
+            </text>
+          </g>
+        )
+      })()}
+
+      {/* Labels */}
+      {data.map((d, i) => {
+        const lp = labelAt(i)
+        return (
+          <text key={i} x={lp.x} y={lp.y}
+            textAnchor="middle" dominantBaseline="middle"
+            fill={hovered === i ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.45)'}
+            fontSize="11"
+            style={{ fontFamily: 'Herkey, sans-serif', letterSpacing: '0.04em', transition: 'fill 0.15s' }}>
+            {d.subject}
+          </text>
+        )
+      })}
+    </svg>
   )
 }
 
@@ -75,38 +159,62 @@ export default function Skills() {
 
   return (
     <section id="skills" ref={sectionRef} className="relative py-32 px-6">
-      <div className="absolute top-1/3 right-0 w-80 h-80 rounded-full bg-rose/5 blur-3xl pointer-events-none" />
-
       <div className="max-w-6xl mx-auto">
+
+        {/* Header */}
         <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
-          <span className="text-sm font-semibold tracking-widest uppercase text-white/40">What I do</span>
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3">Skills & Expertise</h2>
-          <p className="mt-6 text-white/40 max-w-xl mx-auto">Technologies and tools I use to bring products to life.</p>
+          <span className="text-sm font-semibold tracking-widest uppercase text-white/40"
+            style={{ fontFamily: 'Herkey, sans-serif' }}>
+            What I do
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-bold mt-3 text-white"
+            style={{ fontFamily: 'Monograph, sans-serif' }}>
+            Skills & Expertise
+          </h2>
+          <p className="mt-4 text-white/40 max-w-xl mx-auto"
+            style={{ fontFamily: 'Herkey, sans-serif' }}>
+            Technologies and tools I use to bring products to life.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {skillCategories.map((category, i) => (
-            <div
-              key={i}
-              className={`group glass-card rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-lavender/5 gradient-border ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}
-              style={{ animationDelay: `${0.15 * i}s` }}
-            >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 rounded-xl bg-white/8 text-white/60 transition-transform duration-300 group-hover:scale-110">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+        {/* Radar + Tech grid */}
+        <div className={`grid lg:grid-cols-2 gap-10 items-center ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}
+          style={{ animationDelay: '0.2s' }}>
+
+          {/* Radar chart */}
+          <div className="glass-card rounded-3xl p-8 gradient-border flex flex-col items-center">
+            <h3 className="text-lg font-bold text-white mb-8 self-start"
+              style={{ fontFamily: 'Monograph, sans-serif', letterSpacing: '0.05em' }}>
+              Skill Radar
+            </h3>
+            <RadarChart data={radarData} size={300} />
+          </div>
+
+          {/* Tech stack grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {techStacks.map((stack, i) => (
+              <div
+                key={i}
+                className={`glass-card rounded-2xl p-5 gradient-border ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}
+                style={{ animationDelay: `${0.1 * i + 0.3}s` }}
+              >
+                <p className="text-xs tracking-widest uppercase text-white/35 mb-3"
+                  style={{ fontFamily: 'Herkey, sans-serif' }}>
+                  {stack.category}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {stack.items.map((item) => (
+                    <span key={item}
+                      className="px-3 py-1 rounded-lg text-xs text-white/70 bg-white/5 hover:bg-white/15 hover:text-white transition-all cursor-default"
+                      style={{ fontFamily: 'Herkey, sans-serif' }}>
+                      {item}
+                    </span>
+                  ))}
                 </div>
-                <h3 className="text-xl font-heading font-bold text-white/90">{category.title}</h3>
               </div>
-              <div className="space-y-5">
-                {category.skills.map((skill, j) => (
-                  <SkillBar key={j} name={skill.name} level={skill.level} isVisible={isVisible} color={category.color} />
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
