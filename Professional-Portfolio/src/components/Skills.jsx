@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { MagicBentoStyles, GlobalSpotlight, ParticleCard, DEFAULT_GLOW_COLOR } from './MagicBento'
 
 const radarData = [
   { subject: 'DevOps',    score: 88 },
@@ -146,6 +147,7 @@ function RadarChart({ data, size = 320 }) {
 
 export default function Skills() {
   const sectionRef = useRef(null)
+  const gridRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -159,8 +161,25 @@ export default function Skills() {
 
   return (
     <section id="skills" ref={sectionRef} className="relative py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+      <MagicBentoStyles glowColor={DEFAULT_GLOW_COLOR} />
+      
+      {isVisible && (
+        <GlobalSpotlight
+          gridRef={gridRef}
+          disableAnimations={false}
+          enabled={true}
+          spotlightRadius={400}
+          glowColor={DEFAULT_GLOW_COLOR}
+        />
+      )}
 
+      <div className="max-w-6xl mx-auto bento-section" ref={gridRef}>
+        <div style={{
+           '--glow-x': '50%',
+           '--glow-y': '50%',
+           '--glow-intensity': '0',
+           '--glow-radius': '200px'
+        }}></div>
         {/* Header */}
         <div className={`text-center mb-20 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
           <span className="text-sm font-semibold tracking-widest uppercase text-white/40"
@@ -177,41 +196,61 @@ export default function Skills() {
           </p>
         </div>
 
-        {/* Radar + Tech grid */}
-        <div className={`grid lg:grid-cols-2 gap-10 items-center ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}
+        {/* Radar + Tech grid wrapped with GLOW CARDS */}
+        <div className={`grid lg:grid-cols-2 gap-10 items-stretch ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}
           style={{ animationDelay: '0.2s' }}>
 
-          {/* Radar chart */}
-          <div className="glass-card rounded-3xl p-8 gradient-border flex flex-col items-center">
-            <h3 className="text-lg font-bold text-white mb-8 self-start"
+          {/* Radar chart Inside Glow Card */}
+          <ParticleCard 
+            className="card flex flex-col items-center justify-center glass-card rounded-[32px] p-8 border border-white/10 card--border-glow w-full pointer-events-auto h-[450px]"
+            style={{
+              '--glow-intensity': '0',
+              '--glow-radius': '300px'
+            }}
+            particleCount={20}
+            glowColor={DEFAULT_GLOW_COLOR}
+            enableTilt={false} // Radar SVG hovers are delicate
+            clickEffect={true}
+            disableAnimations={false}
+          >
+            <h3 className="text-lg font-bold text-white mb-2 self-start"
               style={{ fontFamily: 'Monograph, sans-serif', letterSpacing: '0.05em' }}>
               Skill Radar
             </h3>
             <RadarChart data={radarData} size={300} />
-          </div>
+          </ParticleCard>
 
-          {/* Tech stack grid */}
+          {/* Tech stack grid Inside Glow Grid */}
           <div className="grid grid-cols-2 gap-4">
             {techStacks.map((stack, i) => (
-              <div
+              <ParticleCard
                 key={i}
-                className={`glass-card rounded-2xl p-5 gradient-border ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}
-                style={{ animationDelay: `${0.1 * i + 0.3}s` }}
+                className="card flex flex-col glass-card rounded-2xl p-5 border border-white/10 card--border-glow cursor-default h-full"
+                style={{
+                  '--glow-intensity': '0',
+                  '--glow-radius': '150px'
+                }}
+                particleCount={8}
+                glowColor={DEFAULT_GLOW_COLOR}
+                enableTilt={false} 
+                clickEffect={true}
               >
-                <p className="text-xs tracking-widest uppercase text-white/35 mb-3"
-                  style={{ fontFamily: 'Herkey, sans-serif' }}>
-                  {stack.category}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {stack.items.map((item) => (
-                    <span key={item}
-                      className="px-3 py-1 rounded-lg text-xs text-white/70 bg-white/5 hover:bg-white/15 hover:text-white transition-all cursor-default"
-                      style={{ fontFamily: 'Herkey, sans-serif' }}>
-                      {item}
-                    </span>
-                  ))}
+                <div style={{ animationDelay: `${0.1 * i + 0.3}s` }}>
+                  <p className="text-xs tracking-widest uppercase text-white/50 mb-4 font-bold"
+                    style={{ fontFamily: 'Herkey, sans-serif' }}>
+                    {stack.category}
+                  </p>
+                  <div className="flex flex-wrap gap-2 relative z-10">
+                    {stack.items.map((item) => (
+                      <span key={item}
+                        className="px-3 py-1.5 rounded-lg text-[11px] text-white/80 bg-white/10 hover:bg-white/20 hover:text-white transition-all pointer-events-auto z-20"
+                        style={{ fontFamily: 'Herkey, sans-serif' }}>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </ParticleCard>
             ))}
           </div>
 
