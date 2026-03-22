@@ -6,6 +6,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
+  font-family: 'LacheyardScript';
+  src: url('/LacheyardScript.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Monograph';
   src: url('/Monograph.ttf') format('truetype');
   font-weight: normal;

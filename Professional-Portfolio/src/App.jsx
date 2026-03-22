@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, useState } from 'react'
 import { ThemeProvider } from './ThemeContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -13,6 +13,8 @@ import NowHumming from './components/NowHumming'
 
 import Silk from './components/Silk'
 import { SmoothCursor } from "@/components/ui/smooth-cursor"
+import LoadingScreen from './components/LoadingScreen'
+import { AnimatePresence } from 'framer-motion'
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -38,9 +40,15 @@ class ErrorBoundary extends Component {
 }
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
   return (
     <ErrorBoundary>
       <ThemeProvider>
+        <AnimatePresence mode="wait">
+          {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+        </AnimatePresence>
+
         <SmoothCursor />
         {/* Silk WebGL background — fixed, behind everything */}
         <Silk
