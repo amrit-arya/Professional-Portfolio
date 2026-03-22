@@ -12,7 +12,7 @@ import MarqueeStrip from './components/MarqueeStrip'
 import NowHumming from './components/NowHumming'
 
 import Silk from './components/Silk'
-import CursorDot from './components/CursorDot'
+import { SmoothCursor } from "@/components/ui/smooth-cursor"
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <CursorDot />
+        <SmoothCursor />
         {/* Silk WebGL background — fixed, behind everything */}
         <Silk
           color="#4d2169"

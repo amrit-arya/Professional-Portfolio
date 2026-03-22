@@ -65,7 +65,7 @@ export default function Navbar() {
           className="flex items-center gap-2 group cursor-pointer"
         >
           <span className="text-lg font-heading font-bold transition-colors text-white/90 group-hover:text-white">
-            Arya<span className="text-white/50">.</span>
+            Arya<span className="text-white/70">.</span>
           </span>
         </button>
 
@@ -77,7 +77,7 @@ export default function Navbar() {
               onClick={() => scrollTo(id)}
               className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 cursor-pointer ${activeSection === id
                   ? 'text-white'
-                  : 'text-white/60 hover:text-white/90'
+                  : 'text-white/70 hover:text-white/90'
                 }`}
             >
               {activeSection === id && (
@@ -129,7 +129,7 @@ export default function Navbar() {
               onClick={() => scrollTo(id)}
               className={`px-4 py-3 rounded-xl text-left text-sm font-medium transition-all duration-300 cursor-pointer ${activeSection === id
                   ? 'text-white bg-white/10'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                  : 'text-white/70 hover:text-white hover:bg-white/5'
                 }`}
             >
               {label}

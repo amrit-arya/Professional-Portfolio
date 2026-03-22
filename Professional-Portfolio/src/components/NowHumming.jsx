@@ -16,7 +16,7 @@ export const SONGS_CONFIG = [
   },
   {
     id: 2,
-    title: 'Bairan',
+    title: 'Bairaan',
     artist: 'Banjaare',
     bannerImg: '/bairan.jpg',
     audioSrc: '/music/Bairan  Animated Love Story  Banjaare (Official Video).mp3'
@@ -157,7 +157,7 @@ export default function NowHumming() {
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <span
-            className="text-sm font-semibold tracking-widest uppercase text-white/50 mb-2 block"
+            className="text-sm font-semibold tracking-widest uppercase text-white/70 mb-2 block"
             style={{ fontFamily: 'Herkey, sans-serif' }}
           >
             What I listen to
@@ -213,7 +213,9 @@ export default function NowHumming() {
                   {/* The Music Banner (Center Tag) */}
                   <img
                     src={song.bannerImg}
-                    alt="Album Banner"
+                    alt={`${song.title} Album Banner`}
+                    loading="lazy"
+                    decoding="async"
                     draggable={false}
                     className="relative z-10 w-20 h-20 rounded-full object-cover border-[3px] border-[#222] shadow-inner pointer-events-none"
                   />
@@ -243,7 +245,7 @@ export default function NowHumming() {
                     )}
                   </div>
 
-                  <p className="text-[15px] text-white/50 tracking-widen" style={{ fontFamily: 'Herkey, sans-serif' }}>
+                  <p className="text-[15px] text-white/70 tracking-widen" style={{ fontFamily: 'Herkey, sans-serif' }}>
                     {song.artist}
                   </p>
                 </div>
@@ -264,7 +266,7 @@ export default function NowHumming() {
                     />
                   </div>
 
-                  <div className="flex justify-between text-[11px] text-white/40 font-mono tracking-wider">
+                  <div className="flex justify-between text-[11px] text-white/70 font-mono tracking-wider">
                     <span>{isActive ? formatTime(progress) : '0:00'}</span>
                     <span>{isActive ? formatTime(duration) : '0:00'}</span>
                   </div>
@@ -274,6 +276,7 @@ export default function NowHumming() {
                 <div className={`flex items-center justify-center transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                   <button
                     onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                    aria-label={isPlaying ? "Pause music" : "Play music"}
                     className="w-16 h-16 flex items-center justify-center rounded-full bg-white text-black hover:scale-105 transition-transform duration-300 shadow-[0_5px_20px_rgba(255,255,255,0.2)]"
                   >
                     {isPlaying ?

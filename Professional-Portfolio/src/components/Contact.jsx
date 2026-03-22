@@ -32,47 +32,47 @@ export default function Contact() {
 
       <div className="max-w-4xl mx-auto">
         <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`}>
-          <span className="text-sm font-semibold tracking-widest uppercase text-white/40">Reach out</span>
+          <span className="text-sm font-semibold tracking-widest uppercase text-white/70">Reach out</span>
           <h2 className="text-4xl sm:text-5xl font-heading font-bold mt-3">Get In Touch</h2>
-          <p className="mt-6 text-white/40 max-w-lg mx-auto">Have a project in mind? Let's create something amazing together.</p>
+          <p className="mt-6 text-white/70 max-w-lg mx-auto">Have a project in mind? Let's create something amazing together.</p>
         </div>
 
         <div className={`glass-card rounded-3xl p-8 sm:p-12 gradient-border ${isVisible ? 'animate-fade-in-up' : 'scroll-hidden'}`} style={{ animationDelay: '0.2s' }}>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="contact-name" className="block text-sm text-white/50 mb-2 font-medium">Name</label>
+                <label htmlFor="contact-name" className="block text-sm text-white/70 mb-2 font-medium">Name</label>
                 <input
                   id="contact-name"
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/25 transition-all duration-300 hover:border-white/20 focus:border-sky/50"
+                  className="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 transition-all duration-300 hover:border-white/20 focus:border-sky/50"
                   placeholder="John Doe"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="contact-email" className="block text-sm text-white/50 mb-2 font-medium">Email</label>
+                <label htmlFor="contact-email" className="block text-sm text-white/70 mb-2 font-medium">Email</label>
                 <input
                   id="contact-email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/25 transition-all duration-300 hover:border-white/20 focus:border-sky/50"
+                  className="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 transition-all duration-300 hover:border-white/20 focus:border-sky/50"
                   placeholder="john@example.com"
                   required
                 />
               </div>
             </div>
             <div>
-              <label htmlFor="contact-message" className="block text-sm text-white/50 mb-2 font-medium">Message</label>
+              <label htmlFor="contact-message" className="block text-sm text-white/70 mb-2 font-medium">Message</label>
               <textarea
                 id="contact-message"
                 rows={5}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/25 transition-all duration-300 hover:border-white/20 focus:border-sky/50 resize-none"
+                className="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 transition-all duration-300 hover:border-white/20 focus:border-sky/50 resize-none"
                 placeholder="Tell me about your project..."
                 required
               />
@@ -88,7 +88,7 @@ export default function Contact() {
           {/* Social links */}
           <div className="mt-10 pt-8 border-t border-white/5 flex items-center justify-center gap-4">
             {socials.map((s) => (
-              <a key={s.name} href={s.href} aria-label={s.name} className="w-12 h-12 rounded-xl glass flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110">
+              <a key={s.name} href={s.href} aria-label={s.name} className="w-12 h-12 rounded-xl glass flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">{s.icon}</svg>
               </a>
             ))}

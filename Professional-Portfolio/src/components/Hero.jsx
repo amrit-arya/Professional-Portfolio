@@ -84,13 +84,13 @@ export default function Hero() {
 
         {/* Tagline */}
         <p
-          className="text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up text-white/50"
+          className="text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up text-white/70"
           style={{ animationDelay: '0.7s', opacity: 0, fontFamily: 'Herkey, sans-serif' }}
         >
           Aspiring{' '}
-          <span className="font-bold text-white/80">DevOps Engineer</span>{' '}
+          <span className="font-bold text-white/90">DevOps Engineer</span>{' '}
           passionate about automation and{' '}
-          <span className="font-bold text-white/80">scalable systems</span>.
+          <span className="font-bold text-white/90">scalable systems</span>.
           I build reliable pipelines and infrastructure that power modern applications.
         </p>
 
